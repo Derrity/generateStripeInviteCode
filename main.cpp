@@ -5,6 +5,7 @@
 #include <string>
 #include <fstream>
 #include <curl/curl.h>
+#include <future>
 #include <boost/algorithm/string.hpp>
 
 int successCount = 0;
@@ -82,13 +83,13 @@ int main() {
     int threadCount;
     std::cout << "Enter the number of threads: ";
     std::cin >> threadCount;
-    std::vector<std::thread> threads;
+	std::vector<std::future<void>> futures;
     std::ofstream out("codes.txt", std::ios::app);
     for (int i = 0; i < threadCount; ++i) {
-        threads.emplace_back(check_code, std::ref(out));
+        futures.push_back(std::async(std::launch::async, check_code, std::ref(out)));
     }
-    for (auto &thread: threads) {
-        thread.join();
+    for (auto &future: futures) {
+        future.get(); // wait for the task to complete
     }
     out.close();
     return 0;
