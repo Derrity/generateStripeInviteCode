@@ -4,6 +4,8 @@ Edit the **install.sh**
 
 change the content of **config.json** of v2ray to your own
 
+but don't change the **HTTP port**
+
 and then:
 
 Run the command:
