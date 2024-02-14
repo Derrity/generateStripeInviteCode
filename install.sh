@@ -1,6 +1,6 @@
 #!/bin/bash
 apt update
-apt install cmake make libcurl4-openssl-dev libssl-dev libboost-all-dev gcc g++ clang wget -y
+apt install cmake make libcurl4-openssl-dev libssl-dev libboost-all-dev gcc g++ clang wget unzip -y
 
 mkdir v2ray
 cd v2ray
